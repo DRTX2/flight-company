@@ -2,20 +2,21 @@ using System.Collections;
 
 namespace Core;
 
-public class Passenger
+public class Passenger(string dni, List<Reservation> reservations, double wallet = 0)
 {
-    private readonly string _dni;
-    private List<Flight> _flights;
-    private string type;
-    private double _wallet;
+    public string Dni { get; }
+    public string Name { get; set; }
+    public string Email { get; set; }
+    public List<Reservation> Reservations { get; private set; }
+    // public string Type { get; private set; }
+    public double Wallet { get; private set; }
 
-    public Passenger(string dni, List<Flight> flights, string type, double wallet=0)
-    {
-        _dni = dni;
-        _flights = flights ?? new List<Flight>();
-        this.type = type;
-        _wallet = wallet;
-    }
+    public void AddFlightReservation(Reservation reservation) => Reservations.Add(reservation);
     
+    public void AddToWallet(double amount)
+    {
+        if (amount > 0)
+            Wallet += amount;
+    }
     
 }
